@@ -7,6 +7,7 @@
     <title>Pet Friends</title>
 
     <script src="https://kit.fontawesome.com/a98d2ff4b7.js" crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -46,8 +47,6 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" id="navL"  href="{% url 'mapa' %}">Encuentranos acá</a>
-        <li class="nav-item">
-          <a class="nav-link" id="navL"  href="{% url 'dogApi' %}">DogsAPI</a>
     </li>
     <a href="{% url 'login' %}" class="me-4 text-reset">
       <svg xmlns="http://www.w3.org/2000/svg"  style="margin-top: 5px; "width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -61,30 +60,31 @@
 </nav>
   <!--Termina Nav-->
   
-<div class="container">
-    <form action="/action_page.php">
-        <div class="form-group">
-          <label for="email">Correo eléctronico</label>
-          <input type="email" class="form-control"  onfocus="CambiaColor(this)" placeholder="Ingrese email..." id="email" required>
-        </div>
-        <div class="form-group">
-          <label for="pwd">Contraseña:</label>
-          <input type="password" class="form-control"  onfocus="CambiaColor(this)" placeholder="Ingrese contraseña..." id="pwd" required>
-        </div>
-        <div class="form-group form-check">
-          <label class="form-check-label">
-            <input class="form-check-input" type="checkbox"> Recordar
-          </label>
-        </div>
-        <div style="text-align: right;">
-            <a href="{% url 'noCuenta' %}">No tienes cuenta ?</a>
-            <div style="text-align: left;">
-                <button type="submit"  class="btn btn-primary">iniciar</button>
-            </div>
-        </div>
-      </form>
-</div>
-  
+  {% load crispy_forms_tags %}
+  <div class="container">
+      <br><br><br>
+      <div class="row">
+          <div class="col-12 col-md-6 offset-3">
+              <div class="card">
+                  <div class="card-body">
+                      <h2>Ingrese sus credenciales</h2>
+                      <hr>
+
+                      <form action="#" method="POST">
+                          {% csrf_token %}
+
+                          {{ form | crispy }}
+                          
+                          <a href="{% url 'index' %}">Ir al Home</a>
+                          <input type="submit" value="Ingresar" class="btn btn-success" style="float:right;">
+
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  </div>
 
 
      

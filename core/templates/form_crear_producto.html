@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Friends</title>
+
+    <script src="https://kit.fontawesome.com/a98d2ff4b7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: Arial;
+          }
+        .error-control {
+            border: 1px solid red;
+        }
+        label.error {
+            color: red;
+            width: 200px;
+            font-size: 0.8em;
+            margin-top: -5px;
+            margin-bottom: 10px;
+        }  
+    </style>
+    <script>
+        $(function() 
+        {
+          $("#formulario").validate({
+               rules: {
+                      id_producto: "required",
+                      descripcionP: "required",
+                      marca: "required",
+                      imagen: "required",
+                      categoria: "required",
+                      },   
+                 messages: 
+                  {
+                  id_producto: {
+                      required: 'Ingresa tu patente',
+                    },
+                  descripcionP: {
+                      required: 'Ingresa marca',
+                  },
+                  marca:{
+                      required: 'Ingrese modelo',                 
+                  },
+                  imagen:{
+                      required: 'Ingrese una imagen',                 
+                  },
+                  categoria:{
+                      required: 'Seleccione una categoria',
+                  },    
+              } 
+          }); 
+      });
+</script>
+</head>
+<body>
+  <nav id="nav" class="navbar navbar-expand-sm navbar-light ">
+  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  
+  <div class="navbar-brand">
+    <img class="rounded-circle" src="{% static 'img/logo.png' %}" width="60" height="60" alt="">
+  </div>
+ 
+  
+  <div class="collapse navbar-collapse" id="opciones">   
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a id="navL" class="nav-link" href="{% url 'index' %}">Principal</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="navL"  href="{% url 'somos' %}">Quienes Somos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="navL"  href="{% url 'galeria'%}">Galeria</a>
+      
+       <li class="nav-item">
+          <a class="nav-link" id="navL"  href="{% url 'contacto' %}">Contacto</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="navL"  href="{% url 'mapa' %}">Encuentranos acá</a>
+        
+    </li>
+    <a href="{% url 'login' %}" class="me-4 text-reset">
+      <svg xmlns="http://www.w3.org/2000/svg"  style="margin-top: 5px; "width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+      </svg>
+    </a>
+                
+    </ul>
+  </div>
+</nav>
+  <!--Termina Nav-->
+
+  <div class="container">
+    <div class="row">
+        <h2>Creando Productos</h2>
+    </div>
+    {% if user.is_authenticated %}
+        <div class="row">
+            <form method="POST" action="#" id="formulario">
+                {% csrf_token %}
+
+                <div class="form-group">
+                    {{ producto_form.id_producto.label }}
+                    {{ producto_form.id_producto.label}}
+                </div>
+
+                <div class="form-group">
+                    {{ producto_form.descripcionP.label }}
+                    {{ producto_form.descripcionP}}
+                </div>
+
+                <div class="form-group">
+                    {{ producto_form.marca.label }}
+                    {{ producto_form.marca }}
+                </div>
+
+                <div class="form-group">
+                    {{ producto_form.imagen.label }}
+                    {{ producto_form.imagen }}
+                </div>
+
+                <div class="form-group">
+                    {{ producto_form.categoria.label }}
+                    {{ producto_form.categoria }}
+                </div>
+
+                <br><br>
+
+                <div class="row">
+                    <div class="col-md">
+
+                        <input type="submit" class="btn btn-primary" value="Enviar">
+                        <input type="reset" class="btn btn-danger" value="Limpiar">
+                        
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+
+    {% else %}
+        <br><br><br><br>
+        <h2 style="color:red; text-align:center">No tiene permisos para Agregar Productos</h2>    
+    {% endif %}
+</div>
+
+     
+  <!--Empieza footer -->
+  <footer class="text-center">  
+        <div class="container-fluid">   
+          <div class="justify-content-center  ">
+          <p id="nombre" class="me-5" ><br>•Axel Muñoz •Maximiliano Urbina<p>
+          
+              <div id="logo" class="text-center">
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-twitter"></i>
+                </a>
+                <a href="" class="me-4 text-reset">
+                  <i class="fab fa-instagram"></i>
+                </a>
+              </div>
+            </div>
+        </div>
+          <!-- Copyright -->
+          <div class="text-center p-3" id="copy">©Copyright Derechos reservados</div>
+        </footer>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>      
+</body>
+</html>
