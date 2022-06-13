@@ -13,7 +13,7 @@ class CategoriaAnimal(models.Model):
 class Productos_Animal (models.Model): 
     id_producto = models.CharField(primary_key=True, max_length=6, verbose_name='id_producto')
     descripcionP= models.CharField(max_length=60, verbose_name='Descripcion')
-    marca= models.CharField(max_length=20, verbose_name='Marca')
+    marca= models.CharField(max_length=20, verbose_name='Marca') 
     imagen =models.ImageField(upload_to="productos",null=True)
     categoria = models.ForeignKey(CategoriaAnimal, on_delete=models.CASCADE, verbose_name='Categoria Animal')
 

@@ -11,8 +11,8 @@ class ProductoForm(forms.ModelForm):
         model= Productos_Animal
         fields = ['id_producto', 'descripcionP', 'marca', 'imagen','categoria']
         labels ={
-            'id_producto': 'Id_producto', 
-            'descripcionP' :'DescripcionP',
+            'id_producto': 'ID del producto', 
+            'descripcionP' :'Descripcion Producto', 
             'marca': 'Marca', 
             'imagen':'Imagen',
             'categoria': 'Categoría',
@@ -22,10 +22,12 @@ class ProductoForm(forms.ModelForm):
                 attrs={
                     'class': 'form-control', 
                     'placeholder': 'Ingrese id', 
-                    'id': 'id_producto'
+                    'id': 'id_producto',
+                    
+                    
                 }
             ), 
-            'despcripcionP': forms.TextInput(
+            'descripcionP': forms.TextInput(
                 attrs={
                     'class': 'form-control', 
                     'placeholder': 'Ingrese Descripcion', 
@@ -39,9 +41,9 @@ class ProductoForm(forms.ModelForm):
                     'id': 'marca'
                 }
             ), 
-            'imagen': forms.TextInput(
+            'imagen': forms.FileInput(
                 attrs={
-                    'class': 'form-control', 
+                    'class': 'form-control',
                     'placeholder': 'Ingrese foto del producto', 
                     'id': 'imagen'
                 }
