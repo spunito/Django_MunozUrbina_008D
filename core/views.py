@@ -1,7 +1,8 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from .models import Productos_Animal
-from .forms import ProductoForm
+from .forms import ProductoForm ,ProductoForm2
+import os
 
 # Create your views here.
 TEMPLATES_DIRS=(
@@ -49,10 +50,13 @@ def form_producto(request):
 def form_mod_producto(request, id): 
     producto = Productos_Animal.objects.get(id_producto=id)
     datos = {
-        'form': ProductoForm(instance=producto)
+        'form': ProductoForm2(instance=producto)
     }
     if request.method=='POST':
-        formulario = ProductoForm(data = request.POST, instance=producto)
+        if len(request.FILES) != 0:
+            if len(producto.imagen) > 0:
+                os.remove(producto.imagen.path)
+        formulario = ProductoForm2(data = request.POST, instance=producto)
         if formulario.is_valid: 
             formulario.save()
             return redirect ('mostrar')

@@ -155,3 +155,35 @@ function iniciarMap(){
       map: map
     });
 }
+
+$(function(){
+    $("#validacion").validate({
+          rules: {
+                id_producto : "required",
+                descripcionP: "required",
+                marca: "required",
+                imagen: "required",
+                categoria :"required",
+                },   
+            messages: 
+            {
+            id_producto: {
+                required: 'Ingresa el id del producto',
+              },
+            descripcionP: {
+                required: 'Ingresa descripcion',
+                maxlenght:'No ingresar más de 60 caracteres'
+            },
+            marca:{
+                required: 'Ingrese marca',  
+            },
+            imagen:{
+                required: 'Ingrese imagen',  
+            },
+            categoria:{
+                required: 'Seleccione una categoria',
+            },
+              
+        }
+    }); 
+  });

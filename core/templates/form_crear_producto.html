@@ -9,10 +9,14 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+    
     
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styleC.css' %}">
+    <script src="{% static 'js/app.js' %}"></script>
+    <link rel="icon" href="{% static 'img/logo.png' %}" class="rounded-circle"/>
 <style>
 body {
     font-family: Arial;
@@ -28,40 +32,6 @@ label.error {
     margin-bottom: 10px;
 }  
 </style>
-<script>
-$(function() 
-{
-  $("#formularioo").validate({
-        rules: {
-              id_producto : "required",
-              descripcionP: "required",
-              marca: "required",
-              imagen: "required",
-              categoria :"required",
-              },   
-          messages: 
-          {
-          id_producto: {
-              required: 'Ingresa el id del producto',
-            },
-          descripcionP: {
-              required: 'Ingresa descripcion',
-              maxlenght:'No ingresar más de 60 caracteres'
-          },
-          marca:{
-              required: 'Ingrese marca',  
-          },
-          imagen:{
-              required: 'Ingrese imagen',  
-          },
-          categoria:{
-              required: 'Seleccione una categoria',
-          },
-            
-      }
-  }); 
-});
-</script>
 </head>
 <body>
   <nav id="nav" class="navbar navbar-expand-sm navbar-light ">
@@ -122,9 +92,8 @@ $(function()
     </div>
     {% if user.is_authenticated %}
         <div class="row">
-            <form method="POST" action="#" enctype="multipart/form-data" id="formulario">
+            <form method="POST" action="#" enctype="multipart/form-data" id="validacion">
                 {% csrf_token %}
-
                 <div class="form-group">
                     {{ producto_form.id_producto.label }}
                     {{ producto_form.id_producto}}
