@@ -26,6 +26,15 @@ body{
 #navL:hover{
     color:gray;
 }
+
+#navM{
+    color:red;
+}
+
+#navM:hover{
+    color:rgb(107, 9, 9);
+}
+
 #nombre{
     margin-left:20px;
     

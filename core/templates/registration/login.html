@@ -21,6 +21,7 @@
 
 </head>
 <body>  
+  
   <nav id="nav" class="navbar navbar-expand-sm navbar-light ">
   
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#opciones">
@@ -74,15 +75,20 @@
   <!--Termina Nav-->
   
   {% load crispy_forms_tags %}
+  
   <div class="container">
+    
+    
       <br><br><br>
       <div class="row">
           <div class="col-12 col-md-6 offset-3">
               <div class="card">
+                
                   <div class="card-body">
                       <h2>Ingrese sus credenciales</h2>
                       <hr>
-
+                      {% block content %}
+                      
                       <form action="#" method="POST">
                           {% csrf_token %}
 
@@ -92,11 +98,14 @@
                           <input type="submit" value="Ingresar" class="btn btn-success" style="float:right;">
 
                       </form>
+                      {% endblock content %}
+                    
                   </div>
               </div>
+                
           </div>
       </div>
-
+      
   </div>
 
 
@@ -124,8 +133,6 @@
           <div class="text-center p-3" id="copy">©Copyright Derechos reservados</div>
         </footer>
 
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>      
+    
 </body>
 </html>
